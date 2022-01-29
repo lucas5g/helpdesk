@@ -20,6 +20,7 @@ export type OrderProps = OrderStyleProps & {
   patrimony: string;
   equipment: string;
   description: string;
+  created_at: Object;
 }
 
 type Props = {
@@ -35,7 +36,7 @@ export function Order({ data }: Props) {
 
       <Content>
         <Header>
-          <Title>Computador Desktop</Title>
+          <Title>{ data.description }</Title>
           <MaterialIcons
             name={data.status === "open" ? "hourglass-empty" : "check-circle"}
             size={24}
@@ -47,14 +48,14 @@ export function Order({ data }: Props) {
           <Info>
             <MaterialIcons name="schedule" size={16} color={theme.COLORS.SUBTEXT} />
             <Label>
-              20/01/22 às 14h
+             { new Date( data.created_at?.toDate()).toDateString() }
             </Label>
           </Info>
 
           <Info>
             <MaterialIcons name="my-location" size={16} color={theme.COLORS.SUBTEXT} />
             <Label>
-              402345
+              { data.patrimony }
             </Label>
           </Info>
         </Footer>
